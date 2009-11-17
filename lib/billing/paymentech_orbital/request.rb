@@ -1,6 +1,6 @@
 module ActiveMerchant
   module Billing
-    module PaymentechOrbitalGateway
+    module PaymentechOrbital
       module Request
         class Base
           attr_reader :gateway, :options

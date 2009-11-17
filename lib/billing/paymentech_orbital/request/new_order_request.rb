@@ -1,8 +1,8 @@
 module ActiveMerchant
   module Billing
-    module PaymentOrbitalGateway
+    module PaymentechOrbital
       module Request
-        class NewOrderRequest < ::Request::Base
+        class NewOrderRequest < PaymentechOrbital::Request::Base
           attr_reader :message_type, :money, :credit_card, :industry_type
 
           def initialize(message_type, money, credit_card, options)

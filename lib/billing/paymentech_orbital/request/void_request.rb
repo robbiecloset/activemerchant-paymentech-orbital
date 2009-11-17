@@ -1,8 +1,8 @@
 module ActiveMerchant
   module Billing
-    module PaymentechOrbitalGateway
+    module PaymentechOrbital
       module Request
-        class VoidRequest < ::Request::Base
+        class VoidRequest < PaymentechOrbital::Request::Base
           attr_reader :tx_ref_num, :tx_ref_idx, :money
 
           def initialize(tx_ref_num, tx_ref_idx, money=nil, options={})

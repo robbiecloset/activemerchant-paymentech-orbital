@@ -1,8 +1,8 @@
 module ActiveMerchant
   module Billing
-    module PaymentechOrbitalGateway
+    module PaymentechOrbital
       module Request
-        class ProfileManagementRequest < ::Request::Base
+        class ProfileManagementRequest < PaymentechOrbital::Request::Base
           attr_accessor :action, :credit_card
 
           cattr_accessor :action_map

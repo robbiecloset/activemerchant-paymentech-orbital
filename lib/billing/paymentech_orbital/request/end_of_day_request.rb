@@ -1,8 +1,8 @@
 module ActiveMerchant
   module Billing
-    module PaymentOrbitalGateway
+    module PaymentechOrbital
       module Request
-        class EndOfDayRequest < ::Request::Base
+        class EndOfDayRequest < PaymentechOrbital::Request::Base
           def request_type; "EndOfDay"; end
 
           private

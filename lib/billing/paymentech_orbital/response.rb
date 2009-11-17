@@ -1,6 +1,6 @@
 module ActiveMerchant
   module Billing
-    module PaymentOrbitalGateway
+    module PaymentechOrbital
       module Response
         class Base
           cattr_accessor :elements
