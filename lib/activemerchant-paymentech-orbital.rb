@@ -1,13 +1,9 @@
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'billing'))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'billing', 'paymentech_orbital'))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'billing', 'paymentech_orbital', 'request'))
-
-require 'rubygems'
 require 'active_merchant'
-require 'paymentech_orbital'
-require 'request'
-require 'end_of_day_request'
-require 'new_order_request'
-require 'profile_management_request'
-require 'void_request'
-require 'response'
+
+require 'active_merchant/billing/paymentech_orbital'
+require 'active_merchant/billing/paymentech_orbital/request'
+require 'active_merchant/billing/paymentech_orbital/request/end_of_day_request'
+require 'active_merchant/billing/paymentech_orbital/request/new_order_request'
+require 'active_merchant/billing/paymentech_orbital/request/profile_management_request'
+require 'active_merchant/billing/paymentech_orbital/request/void_request'
+require 'active_merchant/billing/paymentech_orbital/response'
