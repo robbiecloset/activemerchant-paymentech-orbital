@@ -1,6 +1,7 @@
 require 'rubygems'
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'activemerchant-paymentech-orbital'
+require 'options'
 require 'mocks/active_merchant/billing/gateway'
 require 'test/unit'
 require 'shoulda'
@@ -17,18 +18,5 @@ class Test::Unit::TestCase
       mock(delegatee).send(:"#{method}")
       delegator.send(:"#{method}")
     end
-  end
-
-  # Pseudo factories
-  def gateway(options={})
-    ActiveMerchant::Billing::PaymentechOrbital::Gateway.new({
-      :login       => "user",
-      :password    => "mytestpass",
-      :merchant_id => "1",
-      :bin         => "1", 
-      :terminal_id => "1"
-    }.merge(options).delete_if { |k,v| 
-      v.nil?
-    })
   end
 end
