@@ -2,7 +2,7 @@ module ActiveMerchant
   module Billing
     module PaymentechOrbital
       module Request
-        class NewOrderRequest < PaymentechOrbital::Request::Base
+        class NewOrder < PaymentechOrbital::Request::Base
           attr_reader :message_type, :money, :credit_card, :industry_type
 
           def initialize(message_type, money, credit_card, options)
@@ -12,14 +12,11 @@ module ActiveMerchant
             super(options)
           end
 
-          [:industry_type, :mb_type, :recurring_start_date,
-           :recurring_end_date, :recurring_end_date_flag,
-           :recurring_max_billings, :recurring_frequency,
-           :deferred_bill_date, :soft_descriptors].each do |attr|
-            define_method(:"#{attr}") do
-              options[:"#{attr}"]
-            end
-          end
+          delegate :industry_type, :mb_type, :recurring_start_date,
+            :recurring_end_date, :recurring_end_date_flag,
+            :recurring_max_billings, :recurring_frequency,
+            :deferred_bill_date, :soft_descriptors, 
+            :to => :options
 
           def request_type; "NewOrder"; end
 

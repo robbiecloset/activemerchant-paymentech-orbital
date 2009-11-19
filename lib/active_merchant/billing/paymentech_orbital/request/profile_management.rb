@@ -2,7 +2,7 @@ module ActiveMerchant
   module Billing
     module PaymentechOrbital
       module Request
-        class ProfileManagementRequest < PaymentechOrbital::Request::Base
+        class ProfileManagement < PaymentechOrbital::Request::Base
           attr_accessor :action, :credit_card
 
           cattr_accessor :action_map
@@ -14,7 +14,7 @@ module ActiveMerchant
           }
 
           def initialize(action, credit_card=nil, options={})
-            @action = action
+            @action = action.to_s
             @credit_card = credit_card
             super(options)
           end

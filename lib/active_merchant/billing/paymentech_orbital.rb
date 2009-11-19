@@ -60,37 +60,37 @@ module ActiveMerchant #:nodoc:
         end
 
         def authorize(money, credit_card=nil, options = {})
-          @request = NewOrderRequest.new("A", money, credit_card, options.merge(@options))
+          @request = Request::NewOrder.new("A", money, credit_card, options.merge(@options))
 
           commit('authonly', @request)
         end
 
         def purchase(money, credit_card=nil, options = {})
-          @request = NewOrderRequest.new("AC", money, credit_card, options.merge(@options))
+          @request = Request::NewOrder.new("AC", money, credit_card, options.merge(@options))
 
           commit('sale', @request)
         end
 
         def refund(money, credit_card=nil, options={})
-          @request = NewOrderRequest.new("R", money, credit_card, options.merge(@options))
+          @request = Request::NewOrder.new("R", money, credit_card, options.merge(@options))
 
           commit('refund', @request)
         end
 
         def profile(action, credit_card=nil, options={})
-          @request = ProfileManagementRequest.new(action, credit_card, options.merge(@options))
+          @request = Request::ProfileManagement.new(action, credit_card, options.merge(@options))
 
           commit("profile-#{action}", @request)
         end
 
         def void(tx_ref_num, tx_ref_idx, money=nil, options={})
-          @request = VoidRequest.new(tx_ref_num, tx_ref_idx, money, options.merge(@options))
+          @request = Request::Void.new(tx_ref_num, tx_ref_idx, money, options.merge(@options))
 
           commit('void', @request)
         end
 
         def end_of_day(options={})
-          @request = EndOfDayRequest.new(options.merge(@options))
+          @request = Request::EndOfDay.new(options.merge(@options))
 
           commit('end of day', @request)
         end
@@ -99,7 +99,7 @@ module ActiveMerchant #:nodoc:
         def commit(action, request)
           resp = ssl_post(endpoint_url, request.to_xml, headers)
 
-          @response ||= PaymentechOrbitalResponse.new(resp, request.request_type, {
+          @response ||= Response.new(resp, request.request_type, {
             :test => test?
           })
         end

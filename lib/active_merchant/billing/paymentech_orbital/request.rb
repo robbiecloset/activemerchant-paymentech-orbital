@@ -1,3 +1,5 @@
+require 'ostruct'
+
 module ActiveMerchant
   module Billing
     module PaymentechOrbital
@@ -6,7 +8,7 @@ module ActiveMerchant
           attr_reader :gateway, :options
 
           def initialize(options={})
-            @options = options
+            @options = OpenStruct.new(options)
           end
 
           def to_xml
@@ -14,22 +16,17 @@ module ActiveMerchant
           end
 
           def headers
-            @_headers ||= options[:headers] || {}
+            @_headers ||= options.headers || {}
           end
 
           private
-          # Delegate these to options hash.
-          [:login, :password, :merchant_id, 
-           :bin, :terminal_id, :currency_code, 
-           :currency_exponent, :customer_ref_num, 
-           :order_id].each do |attr|
-            define_method(:"#{attr}") do
-              options[:"#{attr}"]
-            end
-          end
+          delegate :login, :password, :merchant_id, 
+            :bin, :terminal_id, :currency_code, 
+            :currency_exponent, :customer_ref_num, 
+            :order_id, :to => :options
 
           def address
-            @_address ||= options[:billing_address] || options[:address] || {}
+            @_address ||= options.billing_address || options.address || {}
           end
 
           def full_street_address
