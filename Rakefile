@@ -1,16 +1,15 @@
-require 'rubygems'
 require 'rake'
 
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "activemerchant-paymentech-orbital"
-    gem.summary = %Q{TODO: one-line summary of your gem}
+    gem.summary = "A gem to provide a ruby interface for Chase Paymentech Orbital payment gateway."
     gem.description = %Q{TODO: longer description of your gem}
     gem.email = "john@mintdigital.com"
     gem.homepage = "http://github.com/johnideal/activemerchant-paymentech-orbital"
     gem.authors = ["John Corrigan"]
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_dependency("activemerchant", "= 1.4.2")
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
@@ -19,7 +18,7 @@ end
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
+  test.libs << 'test'
   test.pattern = 'test/**/*_test.rb'
   test.verbose = true
 end
