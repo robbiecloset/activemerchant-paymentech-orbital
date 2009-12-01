@@ -66,6 +66,12 @@ def base_request(options={})
   )
 end
 
+def end_of_day_request(options={})
+  ActiveMerchant::Billing::PaymentechOrbital::Request::EndOfDay.new(
+    Options(:end_of_day_options, options)
+  )
+end
+
 def new_order_request(options={})
   ActiveMerchant::Billing::PaymentechOrbital::Request::NewOrder.new(
     "AC", 100, Factory(:credit_card), Options(:new_order_options, options)
