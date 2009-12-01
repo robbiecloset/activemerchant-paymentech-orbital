@@ -71,3 +71,9 @@ def new_order_request(options={})
     "AC", 100, Factory(:credit_card), Options(:new_order_options, options)
   )
 end
+
+def profile_management_request(action=:create, credit_card=Factory(:credit_card), options={})
+  ActiveMerchant::Billing::PaymentechOrbital::Request::ProfileManagement.new(
+    action, credit_card, Options(:profile_management_options, options)
+  )
+end

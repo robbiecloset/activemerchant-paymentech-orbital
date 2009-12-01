@@ -20,6 +20,8 @@ class NewOrderTest < Test::Unit::TestCase
 
     should "delegate to options" do
       assert_delegates_to_ostruct(@request, @request.options, *[
+        :login, :password, :merchant_id, :bin, :terminal_id, :currency_code, 
+        :currency_exponent, :customer_ref_num, :order_id,
         :industry_type, :mb_type, :recurring_start_date,
         :recurring_end_date, :recurring_end_date_flag,
         :recurring_max_billings, :recurring_frequency,

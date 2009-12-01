@@ -8,7 +8,7 @@ module ActiveMerchant
           cattr_accessor :action_map
           self.action_map = {
             "create"   => "C",
-            "retreive" => "R",
+            "retrieve" => "R",
             "update"   => "U",
             "delete"   => "D"
           }
@@ -22,7 +22,7 @@ module ActiveMerchant
           def request_type; "Profile"; end
 
           private
-          def customer_profile_action(action)
+          def customer_profile_action
             self.class.action_map[action.downcase.to_s]
           end
 
@@ -34,7 +34,7 @@ module ActiveMerchant
             add_meta_info(xml)
             add_profile_info(xml)
 
-            xml.tag! "CustomerProfileAction", customer_profile_action(action)
+            xml.tag! "CustomerProfileAction", customer_profile_action
 
             add_customer_profile_management_options(xml)
             add_account_info(xml) if writing?
