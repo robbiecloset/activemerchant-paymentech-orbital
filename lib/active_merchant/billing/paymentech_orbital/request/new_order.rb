@@ -3,7 +3,7 @@ module ActiveMerchant
     module PaymentechOrbital
       module Request
         class NewOrder < PaymentechOrbital::Request::Base
-          attr_reader :message_type, :money, :credit_card, :industry_type
+          attr_reader :message_type, :money, :credit_card
 
           def initialize(message_type, money, credit_card, options)
             @message_type = message_type
