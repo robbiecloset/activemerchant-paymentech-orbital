@@ -112,9 +112,20 @@ class GatewayTest < Test::Unit::TestCase
     end
   end
 
-
-
   context "Committing" do
-    
+    setup do
+      @gateway = gateway
+      @request = new_order_request
+      @gateway.instance_variable_set("@request", @request)
+      @gateway.send(:commit, "sale", @request)
+    end
+
+    should "assign instance variable response" do
+      assert_not_nil @gateway.response
+    end
+
+    should "assign an instance of Response::Base as response instance variable" do
+      assert @gateway.response.is_a?(ActiveMerchant::Billing::PaymentechOrbital::Response)
+    end
   end
 end

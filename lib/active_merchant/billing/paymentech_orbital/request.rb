@@ -12,8 +12,9 @@ module ActiveMerchant
           end
 
           def to_xml
-            @_xml ||= build_request(options)
+            @_xml ||= build_request
           end
+          alias :xml :to_xml
 
           def headers
             @_headers ||= options.headers || {}
@@ -36,7 +37,7 @@ module ActiveMerchant
           # Implement me. I should be the parent tag for the request.
           def request_type; "RequestType"; end
 
-          def build_request(options={})
+          def build_request
             xml = Builder::XmlMarkup.new(:indent => 2)
 
             xml.instruct!(:xml, :version => '1.0', :encoding => 'UTF-8')

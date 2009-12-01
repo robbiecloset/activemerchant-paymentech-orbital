@@ -60,6 +60,14 @@ def gateway(options={})
   ActiveMerchant::Billing::PaymentechOrbital::Gateway.new(Options(:gateway_auth, options))
 end
 
+def base_request(options={})
+  ActiveMerchant::Billing::PaymentechOrbital::Request::Base.new(
+    Options(:request_options, options)
+  )
+end
+
 def new_order_request(options={})
-  ActiveMerchant::Billing::PaymentechOrbital::Request::NewOrder.new(Options(:new_order_options, options))
+  ActiveMerchant::Billing::PaymentechOrbital::Request::NewOrder.new(
+    "AC", 100, Factory(:credit_card), Options(:new_order_options, options)
+  )
 end

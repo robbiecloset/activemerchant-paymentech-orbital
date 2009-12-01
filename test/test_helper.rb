@@ -13,9 +13,9 @@ ActiveMerchant::Billing::Base.mode = :test
 class Test::Unit::TestCase
   include RR::Adapters::TestUnit
 
-  def assert_delegates(delegator, delegatee, *methods)
+  def assert_delegates_to_ostruct(delegator, delegatee, *methods)
     methods.each do |method|
-      mock(delegatee).send(:"#{method}")
+      mock(delegatee).method_missing(method)
       delegator.send(:"#{method}")
     end
   end

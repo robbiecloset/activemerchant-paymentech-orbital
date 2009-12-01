@@ -2,9 +2,7 @@ module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     module PaymentechOrbital
       class Gateway < ActiveMerchant::Billing::Gateway
-        cattr_accessor :enable_profile_management, :urls,
-                       :currency_code, :currency_exponent,
-                       :headers
+        cattr_accessor :currency_code, :currency_exponent, :headers, :urls
 
         self.urls = {
           :test => [
@@ -35,9 +33,6 @@ module ActiveMerchant #:nodoc:
 
         # The name of the gateway
         self.display_name = 'Paymentect Orbital Gateway'
-
-        # Enable profile management?
-        self.enable_profile_management = true
 
         # Headers
         self.headers = {
@@ -110,10 +105,6 @@ module ActiveMerchant #:nodoc:
 
         def endpoint_url
           self.class.urls[Base.gateway_mode][0]
-        end
-
-        def enable_profile_management?
-          self.class.enable_profile_management
         end
       end
     end
