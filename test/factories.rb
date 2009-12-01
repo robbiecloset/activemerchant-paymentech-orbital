@@ -83,3 +83,9 @@ def profile_management_request(action=:create, credit_card=Factory(:credit_card)
     action, credit_card, Options(:profile_management_options, options)
   )
 end
+
+def void_request(tx_ref_num="12345", tx_ref_idx="1", money="100", options={})
+  ActiveMerchant::Billing::PaymentechOrbital::Request::Void.new(
+    tx_ref_num, tx_ref_idx, money, Options(:void_options, options)
+  )
+end
