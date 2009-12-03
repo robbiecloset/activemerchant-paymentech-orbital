@@ -1,6 +1,6 @@
 = activemerchant-paymentech-orbital
 
-Description goes here.
+A gem to provide a ruby interface for Chase Paymentech Orbital payment gateway.
 
 == Note on Patches/Pull Requests
  
