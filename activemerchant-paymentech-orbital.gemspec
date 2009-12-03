@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{activemerchant-paymentech-orbital}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["John Corrigan"]
-  s.date = %q{2009-12-01}
+  s.date = %q{2009-12-03}
   s.description = %q{A gem to provide a ruby interface for Chase Paymentech Orbital payment gateway.}
   s.email = %q{john@mintdigital.com}
   s.extra_rdoc_files = [
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "activemerchant-paymentech-orbital.gemspec",
      "lib/active_merchant/billing/paymentech_orbital.rb",
      "lib/active_merchant/billing/paymentech_orbital/request.rb",
      "lib/active_merchant/billing/paymentech_orbital/request/end_of_day.rb",
