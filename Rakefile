@@ -5,7 +5,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "activemerchant-paymentech-orbital"
     gem.summary = "A gem to provide a ruby interface for Chase Paymentech Orbital payment gateway."
-    gem.description = "A gem to provide a ruby interface for Chase Paymentech Orbital payment gateway."
+    gem.description = "A gem to provide a ruby interface for Chase Paymentech Orbital payment gateway. It has been development thus far to meet specific ends, so not all functionality is present."
     gem.email = "john@mintdigital.com"
     gem.homepage = "http://github.com/johnideal/activemerchant-paymentech-orbital"
     gem.authors = ["John Corrigan"]

@@ -23,7 +23,11 @@ class ProfileManagementTest < Test::Unit::TestCase
         :login, :password, :merchant_id, 
         :bin, :terminal_id, :currency_code, 
         :currency_exponent, :customer_ref_num, 
-        :order_id
+        :order_id, :mb_type, :mb_order_id_generation_method, 
+        :mb_recurring_start_date, :mb_recurring_end_date, 
+        :mb_recurring_max_billings, :mb_recurring_frequency, 
+        :mb_deferred_bill_date, :mb_cancel_date, 
+        :mb_restore_billing_date, :mb_remove_flag
       ])
     end
 
