@@ -2,13 +2,50 @@ Factory.define :credit_card, {
   :class => ActiveMerchant::Billing::CreditCard,
   :default_strategy => :build
 } do |f|
-  f.number "4242424242424242"
-  f.month 9
+  f.month 10
   f.year Time.now.year + 1
   f.first_name 'Joe'
   f.last_name 'Smith'
+end
+
+Factory.define :amex, {
+  :class => ActiveMerchant::Billing::CreditCard,
+  :default_strategy => :build,
+  :parent => :credit_card
+} do |f|
+  f.number "371449635398431"
+  f.add_attribute :type, 'amex'
+  f.verification_value '1234'
+end
+
+Factory.define :discover, {
+  :class => ActiveMerchant::Billing::CreditCard,
+  :default_strategy => :build,
+  :parent => :credit_card
+} do |f|
+  f.number "6011000995500000"
+  f.add_attribute :type, 'discover'
   f.verification_value '123'
+end
+
+Factory.define :master_card, {
+  :class => ActiveMerchant::Billing::CreditCard,
+  :default_strategy => :build,
+  :parent => :credit_card
+} do |f|
+  f.number "5454545454545454"
+  f.add_attribute :type, 'mastercard'
+  f.verification_value '123'
+end
+
+Factory.define :visa, {
+  :class => ActiveMerchant::Billing::CreditCard,
+  :default_strategy => :build,
+  :parent => :credit_card
+} do |f|
+  f.number "4444444444444448"
   f.add_attribute :type, 'visa'
+  f.verification_value '123'
 end
 
 # Option factories
