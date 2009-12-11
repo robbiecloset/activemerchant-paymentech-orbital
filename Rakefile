@@ -19,7 +19,13 @@ end
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'test'
-  test.pattern = 'test/**/*_test.rb'
+  test.pattern = 'test/units/**/*_test.rb'
+  test.verbose = true
+end
+
+Rake::TestTask.new(:remote) do |test|
+  test.libs << 'test'
+  test.pattern = 'test/remote/**/*_test.rb'
   test.verbose = true
 end
 
