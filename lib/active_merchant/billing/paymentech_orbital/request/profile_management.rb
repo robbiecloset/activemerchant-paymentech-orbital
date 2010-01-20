@@ -80,7 +80,7 @@ module ActiveMerchant
 
           def add_account_info(xml)
             xml.tag! "CustomerAccountType", "CC"
-            xml.tag! "Status", options[:status] || "A"
+            xml.tag! "Status", options.status || "A"
           end
 
           def add_credit_card_info(xml)
