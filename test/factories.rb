@@ -14,7 +14,7 @@ Factory.define :amex, {
   :parent => :credit_card
 } do |f|
   f.number "371449635398431"
-  f.add_attribute :type, 'amex'
+  f.add_attribute :type, 'AX'
   f.verification_value '1234'
 end
 
@@ -24,7 +24,7 @@ Factory.define :discover, {
   :parent => :credit_card
 } do |f|
   f.number "6011000995500000"
-  f.add_attribute :type, 'discover'
+  f.add_attribute :type, 'DI'
   f.verification_value '123'
 end
 
@@ -34,7 +34,7 @@ Factory.define :master_card, {
   :parent => :credit_card
 } do |f|
   f.number "5454545454545454"
-  f.add_attribute :type, 'mastercard'
+  f.add_attribute :type, 'MC'
   f.verification_value '123'
 end
 
@@ -44,7 +44,7 @@ Factory.define :visa, {
   :parent => :credit_card
 } do |f|
   f.number "4444444444444448"
-  f.add_attribute :type, 'visa'
+  f.add_attribute :type, 'VI'
   f.verification_value '123'
 end
 
@@ -95,6 +95,17 @@ Options.define(:void_options, :parent => :request_options, :defaults => {
 # Pseudo factories
 def gateway(options={})
   ActiveMerchant::Billing::PaymentechOrbital::Gateway.new(Options(:gateway_auth, options))
+end
+
+def remote_gateway(options={})
+  # TODO: move me to a yml file that is not committed.
+  ActiveMerchant::Billing::PaymentechOrbital::Gateway.new({
+    :login    => 'FOXMDTEST1',
+    :password => 'test1foxmd',
+    :bin => '000001',
+    :terminal_id => '001',
+    :merchant_id => '041756'
+  })
 end
 
 def base_request(options={})
