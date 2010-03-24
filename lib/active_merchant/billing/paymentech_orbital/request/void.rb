@@ -14,6 +14,12 @@ module ActiveMerchant
 
           def request_type; "Reversal"; end
 
+          def to_s
+            "Void: #{tx_ref_num}"
+          end
+
+          def industry_type; nil; end
+
           private
           def request_body(xml)
             add_transaction_info(xml)

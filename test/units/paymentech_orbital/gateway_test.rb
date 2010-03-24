@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'unit_helper'
 
 class GatewayTest < Test::Unit::TestCase
   context "Initializing" do

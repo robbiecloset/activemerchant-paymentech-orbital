@@ -20,19 +20,26 @@ module ActiveMerchant
             @_headers ||= options.headers || {}
           end
 
-          private
-          delegate :login, :password, :merchant_id, 
-            :bin, :terminal_id, :currency_code, 
-            :currency_exponent, :customer_ref_num, 
-            :order_id, :to => :options
+          def to_a
+            [ to_s, Time.now, merchant_id, order_id, industry_type,
+              money, currency_code, customer_ref_num, address[:phone],
+              address[:name], full_street_address ]
+          end
 
           def address
             @_address ||= options.billing_address || options.address || {}
           end
 
+          delegate :login, :password, :merchant_id, 
+            :bin, :terminal_id, :currency_code, 
+            :currency_exponent, :customer_ref_num, 
+            :order_id, :to => :options
+
           def full_street_address
             "#{address[:address1]} #{address[:address2]}".strip
           end
+
+          private
 
           # Implement me. I should be the parent tag for the request.
           def request_type; "RequestType"; end

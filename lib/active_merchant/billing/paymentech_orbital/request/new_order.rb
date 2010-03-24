@@ -20,6 +20,16 @@ module ActiveMerchant
 
           def request_type; "NewOrder"; end
 
+          def to_s
+            "#{self.class.message_map[@message_type]}: Credit Card (#{credit_card.type if credit_card})"
+          end
+
+          def self.message_map
+            { "A"  => "Auth",
+              "AC" => "Auth/Capture",
+              "R"  => "Refund" }
+          end
+
           def recurring?
             industry_type == "RC"
           end
@@ -54,6 +64,15 @@ module ActiveMerchant
             else
               xml.tag! "AccountNum", nil
               add_currency(xml)
+            end
+          end
+          
+          def card_sec_val_ind
+            return "" unless credit_card
+            if credit_card.type == "amex"
+              ""
+            else
+              "1"
             end
           end
 
@@ -108,7 +127,7 @@ module ActiveMerchant
               xml.tag! "MBOrderIdGenerationMethod", "DI"
               xml.tag! "MBRecurringStartDate", recurring_start_date || (Date.today + 1).strftime("%m%d%Y")
               xml.tag! "MBRecurringEndDate", recurring_end_date
-              xml.tag! "MBRecurringNoEndDateFlag", recurring_end_date_flag || (recurring_end_date ? "N" : "Y")
+              xml.tag! "MBRecurringNoEndDateFlag", recurring_end_date_flag # || (recurring_end_date ? "N" : "Y")
               xml.tag! "MBRecurringMaxBillings", recurring_max_billings
               xml.tag! "MBRecurringFrequency", recurring_frequency
               xml.tag! "MBDeferredBillDate", deferred_bill_date

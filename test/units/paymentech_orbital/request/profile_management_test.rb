@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'unit_helper'
 
 class ProfileManagementTest < Test::Unit::TestCase
   context "Initializing" do

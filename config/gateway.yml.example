@@ -1,0 +1,6 @@
+gateway:
+  login: "login"
+  password: "password"
+  bin: "bin"
+  terminal_id: "terminal"
+  merchant_id: "merchant"

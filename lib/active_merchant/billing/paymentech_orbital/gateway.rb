@@ -89,12 +89,16 @@ module ActiveMerchant #:nodoc:
 
           commit('end of day', @request)
         end
+        
+        def to_a
+          request.to_a + response.to_a
+        end
 
         private
         def commit(action, request)
           resp = ssl_post(endpoint_url, request.to_xml, headers)
 
-          @response ||= Response.new(resp, request.request_type, {
+          @response = Response.new(resp, request.request_type, {
             :test => test?
           })
         end

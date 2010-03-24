@@ -21,20 +21,21 @@ module ActiveMerchant
 
           def request_type; "Profile"; end
 
+          def to_s
+            "Profile #{@action}"
+          end
+
+          def industry_type; nil; end
+          def money; nil; end
+
           private
           delegate :mb_type, :mb_order_id_generation_method, :mb_recurring_start_date, 
           :mb_recurring_end_date, :mb_recurring_max_billings,
           :mb_recurring_frequency, :mb_deferred_bill_date, :mb_cancel_date, 
-          :mb_restore_billing_date, :mb_remove_flag, :to => :options
+          :mb_restore_billing_date, :mb_remove_flag, :mb_recurring_no_end_date_flag, :to => :options
           
           def customer_profile_action
             self.class.action_map[action.downcase.to_s]
-          end
-          
-          def mb_recurring_no_end_date_flag
-            return options[:mb_recurring_no_end_date_flag] if options[:mb_recurring_no_end_date_flag]
-            (mb_recurring_end_date || mb_recurring_max_billings) ?
-              "N" : "Y"
           end
 
           def writing?
@@ -89,19 +90,17 @@ module ActiveMerchant
           end
 
           def add_managed_billing_info(xml)
-            if mb_type
-              xml.tag! "MBType", mb_type
-              xml.tag! "MBOrderIdGenerationMethod", mb_order_id_generation_method
-              xml.tag! "MBRecurringStartDate", mb_recurring_start_date
-              xml.tag! "MBRecurringEndDate", mb_recurring_end_date
-              xml.tag! "MBRecurringNoEndDateFlag", mb_recurring_no_end_date_flag
-              xml.tag! "MBRecurringMaxBillings", mb_recurring_max_billings
-              xml.tag! "MBRecurringFrequency", mb_recurring_frequency
-              xml.tag! "MBDeferredBillDate", mb_deferred_bill_date
-              xml.tag! "MBCancelDate", mb_cancel_date
-              xml.tag! "MBRestoreBillingDate", mb_restore_billing_date
-              xml.tag! "MBRemoveFlag", mb_remove_flag
-            end
+            xml.tag! "MBType", mb_type if mb_type
+            xml.tag! "MBOrderIdGenerationMethod", mb_order_id_generation_method if mb_order_id_generation_method
+            xml.tag! "MBRecurringStartDate", mb_recurring_start_date if mb_recurring_start_date
+            xml.tag! "MBRecurringEndDate", mb_recurring_end_date if mb_recurring_end_date
+            xml.tag! "MBRecurringNoEndDateFlag", mb_recurring_no_end_date_flag if mb_recurring_no_end_date_flag
+            xml.tag! "MBRecurringMaxBillings", mb_recurring_max_billings if mb_recurring_max_billings
+            xml.tag! "MBRecurringFrequency", mb_recurring_frequency if mb_recurring_frequency
+            xml.tag! "MBDeferredBillDate", mb_deferred_bill_date if mb_deferred_bill_date
+            xml.tag! "MBCancelDate", mb_cancel_date if mb_cancel_date
+            xml.tag! "MBRestoreBillingDate", mb_restore_billing_date if mb_restore_billing_date
+            xml.tag! "MBRemoveFlag", mb_remove_flag if mb_remove_flag
           end
         end
       end

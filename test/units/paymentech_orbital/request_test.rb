@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'unit_helper'
 
 class RequestTest < Test::Unit::TestCase
   context "Initializing" do

@@ -5,6 +5,10 @@ module ActiveMerchant
         class EndOfDay < PaymentechOrbital::Request::Base
           def request_type; "EndOfDay"; end
 
+          def to_s
+            "End of day"
+          end
+
           private
           def request_body(xml)
             add_meta_info(xml)

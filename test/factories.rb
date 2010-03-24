@@ -3,7 +3,7 @@ Factory.define :credit_card, {
   :default_strategy => :build
 } do |f|
   f.month 10
-  f.year Time.now.year + 1
+  f.year 12
   f.first_name 'Joe'
   f.last_name 'Smith'
 end
@@ -97,14 +97,17 @@ def gateway(options={})
   ActiveMerchant::Billing::PaymentechOrbital::Gateway.new(Options(:gateway_auth, options))
 end
 
+def gateway_config
+  @_gateway_config ||= YAML.load_file("config/gateway.yml")["gateway"]
+end
+
 def remote_gateway(options={})
-  # TODO: move me to a yml file that is not committed.
   ActiveMerchant::Billing::PaymentechOrbital::Gateway.new({
-    :login    => 'FOXMDTEST1',
-    :password => 'test1foxmd',
-    :bin => '000001',
-    :terminal_id => '001',
-    :merchant_id => '041756'
+    :login    => gateway_config["login"],
+    :password => gateway_config["password"],
+    :bin => gateway_config["bin"],
+    :terminal_id => gateway_config["terminal_id"],
+    :merchant_id => gateway_config["merchant_id"]
   })
 end
 
