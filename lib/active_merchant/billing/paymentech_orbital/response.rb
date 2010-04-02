@@ -15,7 +15,7 @@ module ActiveMerchant
           :customer_profile_message, :resp_time, :batch_seq_num,
           :CCAccountNum, :customer_address_1, :customer_address_2,
           :customer_city, :CustomerZIP, :customer_state,
-          :CCExpireDatem, :MBRecurringNoEndDateFlag,
+          :CCExpireDate, :MBRecurringNoEndDateFlag,
           :MBCancelDate, :MBType, :MBOrderIdGenerationMethod,
           :MBRecurringStartDate, :MBRecurringFrequency, 
           :MBRecurringEndDate, :MBRecurringMaxBillings,
