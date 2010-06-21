@@ -29,11 +29,12 @@ module ActiveMerchant
           def money; nil; end
 
           private
-          delegate :mb_type, :mb_order_id_generation_method, :mb_recurring_start_date, 
-          :mb_recurring_end_date, :mb_recurring_max_billings,
-          :mb_recurring_frequency, :mb_deferred_bill_date, :mb_cancel_date, 
-          :mb_restore_billing_date, :mb_remove_flag, :mb_recurring_no_end_date_flag, :to => :options
-          
+          delegate :mb_type, :mb_order_id_generation_method, :mb_recurring_start_date,
+            :mb_recurring_end_date, :mb_recurring_max_billings,
+            :mb_recurring_frequency, :mb_deferred_bill_date, :mb_cancel_date,
+            :mb_restore_billing_date, :mb_remove_flag, :mb_recurring_no_end_date_flag,
+            :order_default_amount, :customer_account_type, :to => :options
+
           def customer_profile_action
             self.class.action_map[action.downcase.to_s]
           end
@@ -80,6 +81,7 @@ module ActiveMerchant
           end
 
           def add_account_info(xml)
+            xml.tag! "OrderDefaultAmount", order_default_amount if order_default_amount
             xml.tag! "CustomerAccountType", "CC"
             xml.tag! "Status", options.status || "A"
           end

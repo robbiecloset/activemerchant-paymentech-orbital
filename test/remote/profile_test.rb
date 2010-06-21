@@ -9,10 +9,16 @@ class ProfileTest < Test::Unit::TestCase
       @address = Options(:billing_address)
       @credit_card = Factory(:visa)
     end
-    
+
     should "create a profile" do
       @create_response = @gateway.profile(:create, @credit_card, {
-        :address => @address
+        :address => @address,
+        :order_default_amount => 100,
+        :customer_account_type => "CC",
+        :mb_type => "R",
+        :mb_recurring_start_date => "12122010",
+        :mb_recurring_no_end_date_flag => "Y",
+        :mb_recurring_frequency => "12 * ?"
       })
 
       assert @create_response.success?, "should be successful overall"
@@ -41,7 +47,7 @@ class ProfileTest < Test::Unit::TestCase
       @customer_ref_num = @create_response.customer_ref_num
 
       @new_name = "Smith Joe"
-      
+
       assert_not_equal @new_name, @create_response.customer_name
 
       @update_response = @gateway.profile(:update, nil, {
