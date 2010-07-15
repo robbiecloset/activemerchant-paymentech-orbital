@@ -5,9 +5,9 @@ module ActiveMerchant
         cattr_accessor :elements
         attr_reader :doc, :request_type
 
-        self.elements = [ 
+        self.elements = [
           :industry_type, :message_type, :merchant_id,
-          :terminal_id, :card_brand, :account_num, 
+          :terminal_id, :card_brand, :account_num,
           :order_id, :tx_ref_num, :tx_ref_idx, :proc_status,
           :approval_status, :resp_code, :AVSRespCode,
           :CVV2RespCode, :auth_code, :status_msg, :resp_msg,
@@ -17,9 +17,9 @@ module ActiveMerchant
           :customer_city, :CustomerZIP, :customer_state,
           :CCExpireDate, :MBRecurringNoEndDateFlag,
           :MBCancelDate, :MBType, :MBOrderIdGenerationMethod,
-          :MBRecurringStartDate, :MBRecurringFrequency, 
+          :MBRecurringStartDate, :MBRecurringFrequency,
           :MBRecurringEndDate, :MBRecurringMaxBillings,
-          :MBRemoveFlag
+          :MBRemoveFlag, :order_default_amount
         ]
 
         def initialize(doc, request_type, options={})
@@ -84,31 +84,31 @@ module ActiveMerchant
         def mb_recurring_no_end_date_flag
           send(:MBRecurringNoEndDateFlag)
         end
-        
+
         def mb_type
           send(:MBType)
         end
-        
+
         def mb_order_id_generation_method
           send(:MBOrderIdGenerationMethod)
         end
-        
+
         def mb_recurring_start_date
           send(:MBRecurringStartDate)
         end
-        
+
         def mb_recurring_frequency
           send(:MBRecurringFrequency)
         end
-        
+
         def mb_recurring_end_date
           send(:MBRecurringEndDate)
         end
-        
+
         def mb_recurring_max_billings
           send(:MBRecurringMaxBillings)
         end
-        
+
         def mb_remove_flag
           send(:MBRemoveFlag)
         end
@@ -120,7 +120,7 @@ module ActiveMerchant
           end
           @_xml
         end
-        
+
         def to_a
           [ auth_code, avs_resp_code, cvv2_resp_code, tx_ref_num,
             customer_ref_num, profile_proc_status ]
@@ -128,10 +128,10 @@ module ActiveMerchant
 
         private
         def tagify(s)
-          s.to_s.gsub(/\/(.?)/) { 
-            "::#{$1.upcase}" 
-          }.gsub(/(?:^|_)(.)/) { 
-            $1.upcase 
+          s.to_s.gsub(/\/(.?)/) {
+            "::#{$1.upcase}"
+          }.gsub(/(?:^|_)(.)/) {
+            $1.upcase
           }
         end
 
