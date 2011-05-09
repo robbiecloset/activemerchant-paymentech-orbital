@@ -17,7 +17,7 @@ rescue LoadError
 end
 
 require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
+Rake::TestTask.new(:unit) do |test|
   test.libs << 'test'
   test.pattern = 'test/units/**/*_test.rb'
   test.verbose = true

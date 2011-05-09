@@ -7,6 +7,8 @@ require 'shoulda'
 require 'factory_girl'
 require 'rr'
 
+require 'factories'
+
 ActiveMerchant::Billing::Base.mode = :test
 
 class Test::Unit::TestCase
