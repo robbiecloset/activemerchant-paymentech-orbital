@@ -6,9 +6,9 @@ module ActiveMerchant #:nodoc:
 
         self.urls = {
           :test => [
-            'https://orbitalvar1.paymentech.net/authorize', 
+            'https://orbitalvar1.paymentech.net/authorize',
             'https://orbitalvar2.paymentech.net/authorize'
-          ], 
+          ],
           :live => [
             'https://orbital1.paymentech.net/authorize',
             'https://orbital2.paymentech.net/authorize'
@@ -37,7 +37,7 @@ module ActiveMerchant #:nodoc:
         # Headers
         self.headers = {
           "MIME-Version" => "1.0",
-          "Content-Type" => "Application/PTI46",
+          "Content-Type" => "Application/PTI51",
           "Content-transfer-encoding" => "text",
           "Request-number" => "1",
           "Document-type" => "Request"
@@ -48,7 +48,7 @@ module ActiveMerchant #:nodoc:
         def initialize(options = {})
           requires!(options, :login, :password, :merchant_id, :bin, :terminal_id)
           @options = options.merge({
-            :currency_code => self.class.currency_code, 
+            :currency_code => self.class.currency_code,
             :currency_exponent => self.class.currency_exponent
           })
           super
@@ -89,7 +89,7 @@ module ActiveMerchant #:nodoc:
 
           commit('end of day', @request)
         end
-        
+
         def to_a
           request.to_a + response.to_a
         end
