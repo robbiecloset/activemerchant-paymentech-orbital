@@ -5,6 +5,7 @@ require 'remote_helper'
 class ProfileTest < Test::Unit::TestCase
   context "Profile CRUD" do
     setup do
+      ActiveMerchant::Billing::PaymentechOrbital::Gateway.currency_code = "978"
       @gateway = remote_gateway
       @address = Options(:billing_address)
       @credit_card = Factory(:visa)
@@ -16,11 +17,11 @@ class ProfileTest < Test::Unit::TestCase
         :order_default_amount => 100,
         :customer_account_type => "CC",
         :mb_type => "R",
-        :mb_recurring_start_date => "12122010",
+        :mb_order_id_generation_method => "IO",
+        :mb_recurring_start_date => "06122011",
         :mb_recurring_no_end_date_flag => "Y",
         :mb_recurring_frequency => "12 * ?"
       })
-
       assert @create_response.success?, "should be successful overall"
       assert @create_response.profile_proc_success?, "should save profile"
     end

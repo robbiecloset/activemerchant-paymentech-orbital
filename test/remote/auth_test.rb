@@ -3,6 +3,7 @@ require 'remote_helper'
 class AuthTest < Test::Unit::TestCase
   context "Auth" do
     setup do
+      ActiveMerchant::Billing::PaymentechOrbital::Gateway.currency_code = "978"
       @gateway = remote_gateway
       @address = Options(:billing_address)
     end
